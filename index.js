@@ -6,7 +6,7 @@ const app = express();
 
 // initialize routes
 app.get('/', (req, res) => {
-  res.json({ "slackUsername": "Fhave", "backend": true, "age": 20, "bio": "My Name is Omoruyi Iyobosa. I am an aspiring Fullstack Web Developer" })
+  res.json({ "slackUsername": "Fhave", "backend": true, "age": 20, "bio": "My Name is Omoruyi Iyobosa. I am an aspiring Fullstack Web Developer" });
 });
 
 
@@ -14,3 +14,6 @@ app.get('/', (req, res) => {
 app.listen(process.env.port || 4000, function(){
   console.log('now listening for requests');
 });
+
+// Export the Express API
+module.exports = app;
