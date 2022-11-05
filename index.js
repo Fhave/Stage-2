@@ -1,5 +1,4 @@
 const express = require('express');
-// const Enum = require('enum');
 
 // set up express app
 const app = express();
@@ -12,12 +11,6 @@ app.use(express.urlencoded({extended:true}))
 app.get('/', (req, res) => {
   res.json({ "slackUsername": "Fhave", "backend": true, "age": 20, "bio": "My Name is Omoruyi Iyobosa. I am an aspiring Fullstack Web Developer" });
 });
-
-// var operation_type = new Enum({
-//   'addition': "+", 
-//   'multiplication': "*", 
-//   'subtraction': "-"
-// })
 
 const operation_typeEnums = Object.freeze({
   "+": "addition", 
@@ -64,13 +57,18 @@ app.post('/stage2', (req, res) => {
     for(let i=0; i<words.length; i++) {
       if ((words[i] === "add") || (words[i] === "plus") || (words[i] === "addition") || (words[i] === "+")) {
         let result1 = x+y;
-        res.json({ "slackUsername": "Fhave", "operation_type" : "addition", "result": result1 })
+        res.json({ "slackUsername": "Fhave", "operation_type" : "addition", "result": result1 });
+        break;
       } else if ((words[i] === "minus") || (words[i] === "subtract") || (words[i] === "take away") || (words[i] === "subtraction") || (words[i] === "-")) {
         let result3 = x-y;
-        res.json({ "slackUsername": "Fhave", "operation_type" : "subtraction", "result": result3 })
+        res.json({ "slackUsername": "Fhave", "operation_type" : "subtraction", "result": result3 });
+        break;
       } else if ((words[i] === "multiply") || (words[i] === "times") || (words[i] === "multiplication") || (words[i] === "*")) {
         let result2 = x*y;
-        res.json({ "slackUsername": "Fhave", "operation_type" : "multiplication", "result": result2 })
+        res.json({ "slackUsername": "Fhave", "operation_type" : "multiplication", "result": result2 });
+        break;
+      } else {
+        res.json({"slackUsername": "Fhave"})
       }
     }
   }
