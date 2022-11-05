@@ -30,8 +30,8 @@ app.post('/stage2', (req, res) => {
   let operation_type = req.body.operation_type;
 
   if (Object.values(operation_typeEnums).includes(operation_type)) {
-    let x = req.body.x;
-    let y = req.body.y;
+    let x = parseInt(req.body.x);
+    let y = parseInt(req.body.y);
       switch(operation_type) {
         case "addition":
           let result1 = x+y;
@@ -57,8 +57,8 @@ app.post('/stage2', (req, res) => {
       var x = parseInt(numbers[0]);
       var y = parseInt(numbers[1]);
     } else {
-      var x = req.body.x;
-      var y = req.body.y;
+      let x = parseInt(req.body.x);
+      let y = parseInt(req.body.y);
     }
     console.log(r.test(operation_type))
     for(let i=0; i<words.length; i++) {
