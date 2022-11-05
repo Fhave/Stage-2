@@ -27,48 +27,38 @@ app.post('/stage2', (req, res) => {
     let y = parseInt(req.body.y);
       switch(operation_type) {
         case "addition":
-          let result1 = x+y;
-          res.json({ "slackUsername": "Fhave", "operation_type" : operation_type, "result": result1 })
+          res.json({ "slackUsername": "Fhave", "operation_type" : operation_type, "result": x+y })
         break;
         case "multiplication":
-          let result2 = x*y;
-          res.json({ "slackUsername": "Fhave", "operation_type" : operation_type, "result": result2 })
+          res.json({ "slackUsername": "Fhave", "operation_type" : operation_type, "result": x*y })
         break;
         case "subtraction":
-          let result3 = x-y;
-          res.json({ "slackUsername": "Fhave", "operation_type" : operation_type, "result": result3 })
-        break;
-        default:
-          console.log('jjj')
+          res.json({ "slackUsername": "Fhave", "operation_type" : operation_type, "result": x-y })
         break;
       }
   } else {
-    var words = operation_type.split(' ');
+    let words = operation_type.split(' ');
+    
     var r = /\d+/g;
     if (r.test(operation_type)) {
       var numbers = operation_type.match(r)
       var x = parseInt(numbers[0]);
       var y = parseInt(numbers[1]);
     } else {
-      let x = parseInt(req.body.x);
-      let y = parseInt(req.body.y);
+      var x = parseInt(req.body.x);
+      var y = parseInt(req.body.y);
     }
-    console.log(r.test(operation_type))
+
     for(let i=0; i<words.length; i++) {
       if ((words[i] === "add") || (words[i] === "plus") || (words[i] === "addition") || (words[i] === "+")) {
-        let result1 = x+y;
-        res.json({ "slackUsername": "Fhave", "operation_type" : "addition", "result": result1 });
+        res.json({ "slackUsername": "Fhave", "operation_type" : "addition", "result": x+y });
         break;
       } else if ((words[i] === "minus") || (words[i] === "subtract") || (words[i] === "take away") || (words[i] === "subtraction") || (words[i] === "-")) {
-        let result3 = x-y;
-        res.json({ "slackUsername": "Fhave", "operation_type" : "subtraction", "result": result3 });
+        res.json({ "slackUsername": "Fhave", "operation_type" : "subtraction", "result": x-y });
         break;
       } else if ((words[i] === "multiply") || (words[i] === "times") || (words[i] === "multiplication") || (words[i] === "*")) {
-        let result2 = x*y;
-        res.json({ "slackUsername": "Fhave", "operation_type" : "multiplication", "result": result2 });
+        res.json({ "slackUsername": "Fhave", "operation_type" : "multiplication", "result": x*y });
         break;
-      } else {
-        res.json({"slackUsername": "Fhave"})
       }
     }
   }
